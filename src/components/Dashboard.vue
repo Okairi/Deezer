@@ -1,4 +1,10 @@
+
+
+
+
 <template>
+
+
 
  <div class="container">
 
@@ -25,7 +31,6 @@
 
         
     </div>
-
 
 
 
@@ -58,22 +63,7 @@
         </div>
 
     </div>
-
-
-
-
-
-
-
-
-
-<div class="cargCentral">
-
-
  
-</div>
-
-
     <div class="row row-cols-1 row-cols-md-3">
  
 
@@ -81,7 +71,7 @@
 
      
             <div v-if="!estadoCarga" class="card" width="100px">
-                <img  v-bind:src="data.album.cover_medium"     class="card-img-top" >
+                <img @click="iniciarMusica(data.preview)"  v-bind:src="data.album.cover_medium"     class="card-img-top" >
 
                 <div class="card-body">
                     <h5 class="card-title">{{data.title}} </h5>
@@ -89,19 +79,21 @@
                     <p class="card-text estiloTexto"> {{data.artist.name}} </p>
                
                 </div>
+
             </div>
         </div>
 
 
     </div>
 
-
-
-
-
-</div>
+ </div>
+ 
+ 
 
  
+
+ 
+
  
  
  
@@ -120,6 +112,7 @@ export default {
  PiePagina
 }
  ,
+
  data(){
 
    return {
@@ -127,7 +120,10 @@ export default {
      txtBuscar:"LinkinPark",
      dataArreglo:[],
      imgInici:"",
-     estadoCarga:true
+     estadoCarga:true,
+     audio:new Audio,
+     contador:1
+     
 
    }
 
@@ -150,7 +146,34 @@ setInterval(() => {
     this.estadoCarga=false;
 }, 1500);
 
+},
+
+iniciarMusica(nomMus){
+this.audio.src=nomMus
+
+this.audio.load();
+this.audio.play();
+
+
+ if(this.contador==1){
+   
+    this.audio.play()
+    this.contador=0
+    console.log(this.contador)
+  }else if(this.contador==0) {
+  
+    this.audio.pause()
+ 
+    this.contador=1
+    console.log(this.contador)
+  } 
+
+
+
+
+
 }
+
 
  },
  mounted() {
@@ -186,5 +209,11 @@ setInterval(() => {
     height: 200px;
 }
  
+
+
+
+
+
+
 
 </style>

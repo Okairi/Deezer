@@ -50,6 +50,12 @@
 <script>
 export default {
 
+    props:{
+
+    rutaImg:null
+}
+ ,
+
 }
 </script>
 
