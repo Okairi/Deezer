@@ -1,26 +1,76 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+
+ 
+<div class="p-prin">
+
+<div class="row">
+
+    <div class="col-lg-3 col-md-12 col-sm-4 col-sm-12 col-12 ">
+       <Menu></Menu>
+
+    </div>
+
+    <div class="col-lg-9">
+      <Dashboard></Dashboard>
+
+    </div>
+
+</div>
+
+<!-- <div class="row">
+  
+    <div class="col-lg-12">
+       <PiePagina></PiePagina>
+
+    </div>
+
+
+ 
+
+</div> -->
+
+
+ </div>
+ 
+
+
+ 
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Dashboard from './components/Dashboard.vue'
+import Menu from './components/Menu.vue'
+import PiePagina from './components/PiePagina.vue'
+import Carga from './components/Carga.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+
+
+  Dashboard,
+  Menu,
+  PiePagina,
+  Carga
+
+
+
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+ 
+*{
+  margin: 0px;
+  padding: 0px;
+
 }
+.p-prin{
+  width: 95%;
+}
+ 
+
+  
 </style>
+ 
