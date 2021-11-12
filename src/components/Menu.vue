@@ -11,7 +11,7 @@
  
             <img class="imgzo" src="../assets/img/foxbel-music.png" alt="">
         </div>
-
+ 
         <div class="contenidoEnlace">
 
             <ul>
@@ -115,4 +115,27 @@ ul>li {
     right: 6px;
     margin-left: 15px;
 }
+ @media (max-width: 777px) {
+ 
+  .navbar{
+     height: 100%;
+     min-height:90px;
+     width: 100%;
+     min-width: 100vw;
+   
+ 
+  }
+  .tituloMarcado{
+      display: none;
+  }
+  .contenidoEnlace{
+      display: none;
+  }
+ 
+}
+ 
+
+
+
+
 </style>

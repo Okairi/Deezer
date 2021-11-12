@@ -5,12 +5,12 @@
 
 <div class="row">
 
-    <div class="col-lg-3 col-md-12 col-sm-4 col-sm-12 col-12 ">
+    <div class="col-lg-3 col-md-3	 menuText">
        <Menu></Menu>
 
     </div>
 
-    <div class="col-lg-9">
+    <div class="col-lg-9 col-md-8">
       <Dashboard></Dashboard>
 
     </div>
@@ -65,6 +65,9 @@ export default {
   padding: 0px;
 
 }
+
+ 
+
 .p-prin{
   width: 95%;
 }

@@ -3,9 +3,6 @@
 
 
 <template>
-
-
-
  <div class="container">
 
     <div class="row ">
@@ -122,8 +119,17 @@ export default {
      imgInici:"",
      estadoCarga:true,
      audio:new Audio,
-     contador:1
+     contador:1,
+     sound:false,
+     sabueso:"Kevin"
      
+     /* Aqui es donde van las variables  */
+     /**estas variables tu las creadas en nada cierto??
+      * se pueden instanciar , claro pero de donde sacaste esas variables y como sabes usarlos?? una guia u algo?
+      * aya algo así xddd no me estas entendiendo, lo que digo es que como sabes que contador es el play = 0 : 1??
+      * eso es cuando se da click  mira en el método
+      */
+
 
    }
 
@@ -149,31 +155,50 @@ setInterval(() => {
 },
 
 iniciarMusica(nomMus){
-this.audio.src=nomMus
+if(nomMus==this.audio.src){
 
-this.audio.load();
-this.audio.play();
-
-
- if(this.contador==1){
+ if(this.contador===1){
    
-    this.audio.play()
+     console.log(this.audio);
+
+    this.audio.play();
     this.contador=0
     console.log(this.contador)
+    
   }else if(this.contador==0) {
-  
+
     this.audio.pause()
  
     this.contador=1
     console.log(this.contador)
-  } 
+  }
 
+}else{
+this.audio.src=nomMus
+this.contador=1;
+if(this.contador===1){
+   
+     console.log(this.audio);
 
+    this.audio.play();
+    this.contador=0
+    console.log(this.contador)
+    
 
+  }else if(this.contador==0) {
 
-
+    this.audio.pause()
+ 
+    this.contador=1
+    console.log(this.contador)
+  }
 }
 
+console.log(this);
+ 
+ 
+
+}
 
  },
  mounted() {
