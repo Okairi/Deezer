@@ -74,8 +74,10 @@ export default {
     background-color: #662323;
     color: white;
     height: 100%;
+    width: 20%;
     min-height: 100vh;
     min-width: 180px;
+    position: fixed;
 }
 
 .imgzo {
@@ -122,6 +124,7 @@ ul>li {
      min-height:90px;
      width: 100%;
      min-width: 100vw;
+     position: inherit;
    
  
   }
