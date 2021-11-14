@@ -49,6 +49,7 @@ export default defineComponent({
     width: 30%;
     img {
       width: 100%;
+      height: 270px;
     }
   }
   &__description {
@@ -71,6 +72,9 @@ export default defineComponent({
 @media (max-width: 800px) {
   .c_banner__img {
     margin: auto;
+    img {
+      height: 140px;
+    }
   }
   .c_banner__description {
     display: none;

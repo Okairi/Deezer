@@ -86,6 +86,7 @@
         </div>
         <div class="c-dashboard_footer__vol">
           <input
+            class="form-range"
             @change="subirVolumen($event)"
             value="5"
             id="barra"
@@ -317,6 +318,10 @@ export default defineComponent({
       justify-content: space-between;
       align-items: center;
       margin: 0 20px;
+      input[type="range"]::-webkit-slider-thumb {
+        background: #ffffff;
+      }
+
       i {
         padding: 0 10px;
         color: #fff;
