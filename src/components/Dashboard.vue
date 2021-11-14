@@ -33,25 +33,35 @@
 
         <div class="col-lg-12 offset-1 mt-4">
 
-            <div class="card mb-3">
-     <Carga class="estiloCarga" v-if="estadoCarga"></Carga> 
+            <div class="card mb-3 datosCard">
+                <Carga class="estiloCarga" v-if="estadoCarga"></Carga> 
+
                 <div   v-if="!estadoCarga" class="row no-gutters">
  
                     <div class="col-md-5  col-sm-9 offset-2 col-lg-2 col-4 offset-1">
                         
-                        <img class="imgInici" :src="imgInici"   >
+                        <img class="imgInici " :src="imgInici">
                    
                     </div>
 
 
                     <div class="col-md-7 col-sm-12 offset-2 col-lg-4">
                         <div class="card-body ">
-                            <h5 class="card-title "> </h5>
+                            <h5 class="card-title"> {{nomCanciActu}}</h5>
                             <p class="card-text "> La mejor música donde quieras.</p>
+                          
+                            <p> {{artisAct}} - {{albolAct}}</p>
 
+                            <div class="contenedorBotones">
+                                 <button>Reproducir</button>
+                                 <button>Seguir</button>
+
+                            </div>
+                                 
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
 
@@ -292,9 +302,11 @@ this.audio.muted=false
     width: 200px;
     height: 200px;
     cursor: pointer;
+    border-radius: 20%;
 }
  .imgAll{
      cursor: pointer;
+     border-radius: 50%;
  }
  .contenImgFooter{
 
@@ -432,5 +444,28 @@ height: 35px;
     font-size: 50px;
  
 }
+.datosCard{
+    font-weight: 700;
+    color: black;
+   
  
+}
+button{
+    background-color: rgba(232, 96, 96, 1);
+ 
+    border-radius: 100px;
+    padding:10px 25px;
+    margin-left: 20px;
+    color: white;
+    border: none;
+ 
+}
+button:active{
+    font-size: 17px;
+}
+ .contenedorBotones{
+display: flex;
+flex-direction: row;
+
+ }
 </style>
