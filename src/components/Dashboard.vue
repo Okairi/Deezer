@@ -34,13 +34,13 @@
         <div class="col-lg-12 offset-1 mt-4">
 
             <div class="card mb-3">
-
-                <div class="row no-gutters">
+     <Carga class="estiloCarga" v-if="estadoCarga"></Carga> 
+                <div   v-if="!estadoCarga" class="row no-gutters">
  
                     <div class="col-md-5  col-sm-9 offset-2 col-lg-2 col-4 offset-1">
                         
-                        <img v-if="!estadoCarga" class="imgInici" :src="imgInici"   >
-                        <Carga v-if="estadoCarga"></Carga> 
+                        <img class="imgInici" :src="imgInici"   >
+                   
                     </div>
 
 
@@ -51,9 +51,7 @@
 
                         </div>
                     </div>
-
                 </div>
-
             </div>
         </div>
 
@@ -64,8 +62,13 @@
 
         <div v-for="data in dataArreglo" :key="data.id" class="col-6 mb-4 col-sm-4"> 
             <div v-if="!estadoCarga" class="card" width="100px">
-                <img   @click="iniciarMusica(data.preview,data.album.cover_medium,data.artist.name,data.album.title,data.title)"  v-bind:src="data.album.cover_medium"     class=" imgAll card-img-top" >
+                   <div class="contenedorIconImage">
 
+                <img   @click="iniciarMusica(data.preview,data.album.cover_medium,data.artist.name,data.album.title,data.title)"  v-bind:src="data.album.cover_medium"     class=" imgAll card-img-top" >
+               
+               <i  @click="iniciarMusica(data.preview,data.album.cover_medium,data.artist.name,data.album.title,data.title)"   class="fas fa-play centrado"></i>
+               
+                </div>
                 <div class="card-body">
                     <h5 class="card-title">{{data.title}} </h5>
 
@@ -81,7 +84,6 @@
 
   <div class="footer">
 
- 
          <div class="hijoFooter">
             <div class="contenImgFooter">
                 <img class="imgFot" :src="imgInici" alt="">
@@ -92,10 +94,10 @@
                 <p> {{artisAct}} - {{albolAct}}</p>
             </div>
         </div>  
- 
+
         <div class="playMusic">
             <i class="fas fa-step-backward iconoPlaySec"></i>
-            <i @click="iniciarMusica(urlIni,imgInici,artisAct,albolAct,nomCanciActu)" class="fas fa-play iconoPlay"></i>
+            <i @click="iniciarMusica(urlIni,imgInici,artisAct,albolAct,nomCanciActu)" class="fas fa-play iconoPlaySec"></i>
             <i class="fas fa-step-forward iconoPlaySec"></i>
         </div> 
 
@@ -105,7 +107,7 @@
            
          <div class="centrarIconVolumen">
              
-              <input @change="subirVolumen($event)" id="barra" type="range" min="1" max="9" > 
+              <input @change="subirVolumen($event)" value="5" id="barra" type="range" min="1" max="9" > 
               
               
                </div>
@@ -177,35 +179,19 @@ setInterval(() => {
 },
 
 iniciarMusica(nomMus,imgSelct,artista,album,tituloCanci){
-
-//URl DE LA MUSICA ,  IMAGEN DEL ALBUM ,NOMBRE ARTISTA , TITULO DEL ALBUM,NOMBRE DE LA MUSICA
-//data.preview,data.album.cover_medium,data.artist.name,data.album.title,data.title
  this.urlIni=nomMus
-
 this.imgInici=imgSelct
 this.artisAct=artista
 this.albolAct=album
 this.nomCanciActu=tituloCanci
-
- 
-
-
 if(nomMus==this.audio.src){
 
- if(this.contador===1){
-   
- 
-
+    if(this.contador===1){
     this.audio.play();
     this.contador=0
-
-
-    
   }else if(this.contador==0) {
 
     this.audio.pause()
-    
- 
     this.contador=1
    
   }
@@ -214,20 +200,14 @@ if(nomMus==this.audio.src){
 this.audio.src=nomMus
 this.contador=1;
 if(this.contador===1){
-   
- 
-
     this.audio.play();
     this.contador=0
- 
-    
-
   }else if(this.contador==0) {
 
     this.audio.pause()
  
     this.contador=1
- 
+
   }
 }
 
@@ -333,17 +313,13 @@ this.audio.muted=false
     justify-content:space-between;
 
 }
-.iconoPlay {
-    margin: 20px;
-    font-size: 45px;
-    cursor: pointer;
-    color: white;
-}
+
 .iconoPlaySec {
     margin: 20px;
-    font-size: 40px;
+    font-size: 35px;
     cursor: pointer;
     color: white;
+
 }.imgFot {
     width: 100%;
     height: 100px;
@@ -381,7 +357,14 @@ this.audio.muted=false
   
     
 }
-
+.playMusic {
+ display: flex;
+ flex-direction: row;
+ justify-content: space-between;
+ 
+ 
+ 
+}
 
  @media (max-width: 777px) {
  
@@ -390,14 +373,12 @@ this.audio.muted=false
      display: none;
 
  }
-.playMusic{
+.playMusic li {
     width: 100%;
-
-
+ 
+ 
 }
-.iconoPlay{
-     font-size: 35px;
-}
+ 
 .iconoPlaySec{
   font-size: 35px;
 }
@@ -416,13 +397,40 @@ this.audio.muted=false
 font-size: 15px;
 height: 35px;
 }
-
-
-
-
+ 
 }
 
+ .estiloCarga{
+     margin: auto;
+     margin-right: 70%;
+ }
+
+ .contenedorIconImage{
+
+ 
+    position: relative;
+    display: inline-block;
+    text-align: center;
  
 
+ }
+
+.centrado{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 40px;
+    cursor: pointer;
+
+    
+ 
+}
+.centrado:active{
+     
+    font-size: 50px;
+ 
+}
  
 </style>
