@@ -1,44 +1,20 @@
 <template>
-
- <InicioPage></InicioPage>
- 
+<inicio-page/>
 </template>
 
-<script>
- 
-
+<script lang="ts">
 import InicioPage from '@/pages/InicioPage.vue'
-
-export default {
+import {defineComponent} from 'vue';
+export default defineComponent({
   name: 'App',
   components: {
-
- 
   InicioPage
-
-
-
   }
-}
-
-
+})
 </script>
 
-<style>
+<style lang="scss">
  
-*{
-  margin: 0px;
-  padding: 0px;
-
-}
-
- 
-
-.p-prin{
-  width: 95%;
-}
- 
-
-  
 </style>
+
  

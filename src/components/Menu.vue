@@ -61,15 +61,14 @@
 
 </template>
 
-<script>
-export default {
-
-
-
-}
+<script lang="ts">
+import {defineComponent} from 'vue';
+export default defineComponent({
+    name: 'Menu',
+});
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .navbar {
     background-color: #662323;
     color: white;
