@@ -1,20 +1,16 @@
 <template>
-<inicio-page/>
+  <home />
 </template>
 
 <script lang="ts">
-import InicioPage from '@/pages/InicioPage.vue'
-import {defineComponent} from 'vue';
+import Home from "@/pages/Home.vue";
+import { defineComponent } from "vue";
 export default defineComponent({
-  name: 'App',
+  name: "App",
   components: {
-  InicioPage
-  }
-})
+    Home,
+  },
+});
 </script>
 
-<style lang="scss">
- 
-</style>
-
- 
+<style lang="scss"></style>
