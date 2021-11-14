@@ -9,7 +9,7 @@
 
         <div class="col-lg-8 col-md-6 col-sm-5 col-5">
             <div class="mt-4">
-                <input   @keypress.enter="getData()"  v-model="txtBuscar" class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Buscar">
+                <input   @keypress.enter="getData()"  v-model="txtBuscar" class="form-control mr-sm-2  "  type="search" placeholder="Buscar" aria-label="Buscar">
             </div>
          
         </div>
@@ -81,10 +81,11 @@
 
   <div class="footer">
 
-   
  
-         <div>
-            <img class="imgFot" :src="imgInici" alt="">
+         <div class="hijoFooter">
+            <div class="contenImgFooter">
+                <img class="imgFot" :src="imgInici" alt="">
+            </div>
             <div class="textoFooter">
                 <h5> {{nomCanciActu}}</h5>
                 <br>
@@ -92,12 +93,26 @@
             </div>
         </div>  
  
-        <div>
+        <div class="playMusic">
             <i class="fas fa-step-backward iconoPlaySec"></i>
             <i @click="iniciarMusica(urlIni,imgInici,artisAct,albolAct,nomCanciActu)" class="fas fa-play iconoPlay"></i>
             <i class="fas fa-step-forward iconoPlaySec"></i>
         </div> 
-     
+
+
+        <div class="volumen">
+                
+           
+         <div class="centrarIconVolumen">
+             
+              <input @change="subirVolumen($event)" id="barra" type="range" min="1" max="9" > 
+              
+              
+               </div>
+         <div class="centrarIconVolumen"> <i @click="silenciarMusica()" class="fas fa-volume-off iconoPlaySec"></i></div>
+
+        </div>     
+
 </div> 
  </div>
 </template>
@@ -106,6 +121,7 @@
 
 import Carga from './Carga.vue'
  
+import fetchJsonp from 'fetch-jsonp'
 
 
 export default {
@@ -128,6 +144,7 @@ export default {
      nomCanciActu:"",
      artisAct:"",
      albolAct:"",
+     contadorMuted:1
  
    }
 
@@ -138,11 +155,14 @@ export default {
    
  async getData(){
 
+ const data =await fetchJsonp(`https://api.deezer.com/search?q=${this.txtBuscar}`+'&index=0&limit=40&output=jsonp' ).then(response => response.json() )
 
-const data =await fetch('https://api.deezer.com/search?q='+this.txtBuscar).then(r=>r.json())
+ 
+ 
+
  
  this.dataArreglo=data.data
-console.log(this.dataArreglo);
+ 
 
 this.urlIni=this.dataArreglo[0].preview;
 this.imgInici=this.dataArreglo[0].album.cover_big;
@@ -167,13 +187,7 @@ this.artisAct=artista
 this.albolAct=album
 this.nomCanciActu=tituloCanci
 
-
-console.log(this.urlIni);
-console.log( this.imgInici);
-console.log(this.artisAct);
-console.log(this.albolAct);
-console.log(this.nomCanciActu);
-
+ 
 
 
 if(nomMus==this.audio.src){
@@ -222,6 +236,38 @@ if(this.contador===1){
  
 
 }
+,
+
+
+subirVolumen(event){
+    
+/*  this.audio.volume=event.currentTarget.value */
+console.log([this.audio.volume]);
+console.log(event.target.value);
+this.audio.volume=event.target.value *0.1
+
+
+},
+silenciarMusica(){
+  
+ console.log(this.audio.muted);
+ if(this.contadorMuted===1){
+   
+    this.audio.muted=true
+    this.contadorMuted=0
+
+  }else if(this.contadorMuted==0) {
+
+this.audio.muted=false
+    
+    this.contadorMuted=1
+  }
+        
+
+
+}
+
+
 
  },
  mounted() {
@@ -234,6 +280,16 @@ if(this.contador===1){
 </script>
 
 <style scoped>
+
+.hijoFooter{
+    display: flex;
+  
+    flex-direction: row;
+    justify-content: center;
+}
+
+
+
 .izquiera {
     margin-left: 60%;
 }
@@ -260,7 +316,10 @@ if(this.contador===1){
  .imgAll{
      cursor: pointer;
  }
- 
+ .contenImgFooter{
+
+     width: 80%;
+ }
 
  .footer {
     position: fixed;
@@ -271,7 +330,7 @@ if(this.contador===1){
     height: 100px;
      display: flex;
      flex-direction: row;
-    justify-content:center;
+    justify-content:space-between;
 
 }
 .iconoPlay {
@@ -286,11 +345,9 @@ if(this.contador===1){
     cursor: pointer;
     color: white;
 }.imgFot {
-    width: 15%;
+    width: 100%;
     height: 100px;
-    position: absolute;
-    left: 0px;
-    margin-right: 50px;
+ 
 }
 .textoFooter {
     margin-left: 40px;
@@ -310,6 +367,62 @@ if(this.contador===1){
   background-color: #f1f1f1;
   border-radius: 100%;
 }
+
+.volumen{
+ 
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+
+}
+.centrarIconVolumen input{
+    height: 80px;
+  
+    
+}
+
+
+ @media (max-width: 777px) {
+ 
+ 
+ .volumen{
+     display: none;
+
+ }
+.playMusic{
+    width: 100%;
+
+
+}
+.iconoPlay{
+     font-size: 35px;
+}
+.iconoPlaySec{
+  font-size: 35px;
+}
+
+.textoFooter{
+   margin-left: 23px;
+    color: #FFFFFF;
+    font-family: Quicksand;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+  margin-top: 0px;
+    line-height: 10px;
+}
+.textoFooter h5{
+font-size: 15px;
+height: 35px;
+}
+
+
+
+
+}
+
+ 
 
  
 </style>
