@@ -119,7 +119,7 @@ export default defineComponent({
   },
   data() {
     return {
-      txtBuscar: "LinkinPark",
+      txtBuscar: "Linkin Park",
       dataArreglo: [] as Music[],
       /* dataArreglo : Object as PropType<Music[]>, */
       imgInici: "",
@@ -139,7 +139,7 @@ export default defineComponent({
         `https://api.deezer.com/search?q=${this.txtBuscar}` +
           "&index=0&limit=40&output=jsonp"
       ).then((response) => response.json());
-
+      console.log(data);
       this.dataArreglo = data.data;
 
       this.urlIni = this.dataArreglo[0].preview;
@@ -207,6 +207,7 @@ export default defineComponent({
   },
   mounted() {
     this.getData();
+    console.log(this.getData());
   },
 });
 </script>
